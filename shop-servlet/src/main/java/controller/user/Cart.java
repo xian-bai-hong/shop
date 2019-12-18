@@ -20,7 +20,6 @@ public class Cart {
     @RequestMapping("addToCart")
     public String addToCart(Article article, HttpSession session, Model model) {
         Map<Article, Integer> cart = (Map<Article, Integer>)session.getAttribute("cart");
-
         if(cart == null) {
             cart = new HashMap<>();//创建购物车Map集合
             article = service.getById(article.getCode());//从数据库中查询商品信息
