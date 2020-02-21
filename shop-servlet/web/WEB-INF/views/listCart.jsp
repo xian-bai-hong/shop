@@ -29,7 +29,6 @@
                 <td>${entry.value}</td>
                 <td>${ entry.key.price*entry.value }</td>
             </tr>
-
         </c:forEach>
         <tr>
             <td colspan="5">
