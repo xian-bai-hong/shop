@@ -14,7 +14,7 @@
     <link href="static/css/shopping.css" rel='stylesheet' type='text/css'/>
     <link href="/static/css/layui/css/layui.css" type="text/css" rel="stylesheet"/>
     <script src="/static/js/layui.js"></script>
-    <link rel="start icon" href="images/resize_png_new.png">
+    <link rel="start icon" href="/static/images/resize_png_new.png">
     <style>
         .checktxt{
             text-align: left;
@@ -40,12 +40,23 @@
 <body>
 
 <div class="top1">
+    <div class="top-left">
+        <c:if test="${user != null}">
+            <ul>
+                <li style="color: whitesmoke"> <strong> 欢迎您:${sessionScope.user.username}!</strong>
+                    <a style="color: whitesmoke" href="${pageContext.request.contextPath}/outLogin">注销</a>
+                </li>
+            </ul>
+        </c:if>
+
+    </div>
 </div>
 <div class="top-middle">
 
 </div>
 <div class="top-right">
     <ul>
+
         <li><a href="${pageContext.request.contextPath}/">首页</a></li>
 
         <li><a href="#">最近浏览</a></li>
@@ -60,7 +71,7 @@
 
 <div class="header1">
     <div class="header1">
-        <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
+        <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="/static/images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
     </div>
 
     <div class="icon2"><a id="displayCart" href="${pageContext.request.contextPath}/addToCart">
@@ -79,32 +90,39 @@
 
 <br>
 <br>
-<div class="div">
+<div class="div" >
 <c:forEach items="${sole.list}" var="sole">
     <input type="text" name="code" value="${sole.code}" style="display: none">
-    <div class="menu-A1  div" >
-        <div class="menu-a1 div">
+        <div class="menu-a1 div" style="float: left">
             <c:if test="${sole.images !=null }">
                 <img class="imgbig" width="300" height="400" alt="" src="/shop/${sole.images}">
             </c:if>
         </div>
-    </div>
-    <div  class="div">
-            ${sole.notice}
-    </div>
-    <div class="div">
-        <span style="color: red">￥${sole.price}</span>
-    </div>
-    <div class="div">
-            ${sole.mezz}
-    </div>
+        <div id="a">
 
-    <div>
-        <a href="${pageContext.request.contextPath}/addToCart?code=${sole.code}" > <button type="button" class="layui-btn layui-btn-primary" style="background-color: red;color: white" >加入购物车</button></a>
-    </div>
-    <a href="javascript:history.go(-1)">返回商品信息页面</a>
+            <div  class="div">
+                    ${sole.notice}
+            </div>
+            <div class="div">
+                <span style="color: red">￥${sole.price}</span>
+            </div>
+            <div class="div">
+                    ${sole.mezz}
+            </div>
+
+            <div>
+                <a href="${pageContext.request.contextPath}/addToCart?code=${sole.code}" > <button type="button" class="layui-btn layui-btn-primary" style="background-color: red;color: white" >加入购物车</button></a>
+            </div>
+            <a href="javascript:history.go(-1)">返回商品信息页面</a>
+        </div>
 </c:forEach>
 </div>
-
 </body>
+<style>
+ #a{
+    position: relative;
+     top: 80px;
+     left: 200px;
+ }
+</style>
 </html>

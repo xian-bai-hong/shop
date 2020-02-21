@@ -15,7 +15,8 @@
 
 
 
-    <link rel="start icon" href="logo/resize_png_new.png">
+    <link rel="start icon" href="/static/logo/resize_png_new.png">
+    <link rel="start icon" href="/static/images/resize_png_new.png">
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.js"></script>
     <link href="/static/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
@@ -67,6 +68,13 @@
     </style>
 </head>
 <body>
+<c:if test="${user != null}">
+    <ul>
+        <li style="color: black"> <strong> 欢迎您:${sessionScope.user.username}!</strong>
+            <a style="color: black" href="${pageContext.request.contextPath}/outLogin">注销</a>
+        </li>
+    </ul>
+</c:if>
 
 
 <table style="border: 1px black solid ;width: 1366px" cellspacing="0" cellpadding="0">

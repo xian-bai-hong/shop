@@ -16,6 +16,7 @@ public interface ArticleDao {
     //修改
     boolean update(@Param("shop") Article article);
 
+    Article selectCart(String name);
     //修改前的查询
     Article getById(Integer code);
     //删除

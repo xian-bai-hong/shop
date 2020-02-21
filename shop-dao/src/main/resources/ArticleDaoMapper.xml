@@ -8,6 +8,10 @@
         select code, name, notice, price, images, category, mezz from article order by code
     </select>
 
+    <select id="selectCart"  resultType="com.entity.article.Article">
+        select * from article where name = #{name}
+    </select>
+
     <update id="update">
      update article
 <!--      <set>-->

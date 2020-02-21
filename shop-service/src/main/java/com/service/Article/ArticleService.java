@@ -11,7 +11,7 @@ public interface ArticleService {
     void add(Article article);
 
     boolean update(Article article);
-
+    Article selectCart(String name);
     Article getById(Integer code);
     void delete(Integer code);
 }

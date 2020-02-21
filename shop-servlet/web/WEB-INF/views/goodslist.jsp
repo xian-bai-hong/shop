@@ -4,7 +4,7 @@
     <title>商品列表</title>
     <link href="/static/css/shopping.css" rel='stylesheet' type='text/css'/>
     <link href="/static/css/shoplist.css" rel='stylesheet' type='text/css'/>
-    <link rel="start icon" href="images/resize_png_new.png">
+    <link rel="start icon" href="/static/images/resize_png_new.png">
     <link href="/static/css/layui/css/layui.css" type="text/css" rel="stylesheet"/>
     <script src="/static/js/layui.js"></script>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
@@ -70,6 +70,16 @@
 <body>
 <!------header top------->
 <div class="top1">
+    <div class="top-left">
+        <c:if test="${user != null}">
+            <ul>
+                <li style="color: whitesmoke"> <strong> 欢迎您:${sessionScope.user.username}!</strong>
+                    <a style="color: whitesmoke" href="${pageContext.request.contextPath}/outLogin">注销</a>
+                </li>
+            </ul>
+        </c:if>
+
+    </div>
 </div>
 <div class="top-middle">
 
@@ -92,7 +102,7 @@
 <!------header top------->
 <div>
 <div class="header1">
-    <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
+    <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="/static/images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
 </div>
 
 <div class="icon2"><a id="displayCart" href="${pageContext.request.contextPath}/addToCart">
@@ -146,5 +156,9 @@
 <!--------footer --------->
 <script type="text/javascript" src="script/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="script/js.js"></script>
+
+
+
+
 </body>
 </html>

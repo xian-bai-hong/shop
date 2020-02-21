@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,7 +7,7 @@
     <link href="/static/css/shopping.css" rel='stylesheet' type='text/css'/>
     <link href="/static/css/shoplist.css" rel='stylesheet' type='text/css'/>
     <link href="/static/css/lunbo.css" rel="stylesheet" type="text/css"/>
-    <link rel="start icon" href="images/resize_png_new.png">
+    <link rel="start icon" href="/static/images/resize_png_new.png">
     <link href="/static/css/layui/css/layui.css" type="text/css" rel="stylesheet"/>
     <script src="/static/js/layui.js"></script>
     <style>
@@ -34,18 +34,27 @@
 <body>
 <div class="top1">
     <div class="top-left">
+    <c:if test="${user != null}">
+        <ul>
+            <li style="color: whitesmoke"> <strong> 欢迎您:${sessionScope.user.username}!</strong>
+                <a style="color: whitesmoke" href="${pageContext.request.contextPath}/outLogin">注销</a>
+            </li>
+        </ul>
+    </c:if>
 
     </div>
 
     <div class="top-right">
         <ul>
+
+
             <li><a href="#">最近浏览</a></li>
 
             <li><a href="#">关于我们</a></li>
 
             <li><a href="${pageContext.request.contextPath}/login" target="_blank">登录</a></li>
 
-            <li><a href="#" target="_blank">注册</a></li>
+            <li><a href="${pageContext.request.contextPath}/register" target="_blank">注册</a></li>
         </ul>
     </div>
 </div>
@@ -54,10 +63,10 @@
 <!-----start header logo------->
 <div class="header1">
     <div class="header1">
-        <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
+        <div id="logo"><a href="${pageContext.request.contextPath}/"> <img style="width: 180px" src="/static/images/logo_img_sc.jpg" alt="购物网logo" title="购物网"/> </a></div>
     </div>
 
-    <div class="icon2"><a id="displayCart" href="${pageContext.request.contextPath}/addToCart">
+    <div class="icon2"><a id="displayCart" href="${pageContext.request.contextPath}/listCart">
         <i class="layui-icon layui-icon-cart" style="font-size: 30px; color: #1E9FFF;"></i></a>
     </div>
     <div >
@@ -77,12 +86,12 @@
                 <!--        图片轮播-->
                 <div id="container" >
                     <div id="list" style="left: -800px">
-                        <img src="images/banner_01.jpg" alt="1" class="pic"/>
-                        <img src="images/banner_01.jpg" alt="1" class="pic"/>
-                        <img src="images/banner_02.jpg" alt="2" class="pic"/>
-                        <img src="images/banner_03.jpg" alt="3" class="pic"/>
-                        <img src="images/banner_04.jpg" alt="4" class="pic"/>
-                        <img src="images/banner_05.jpg" alt="5" class="pic"/>
+                        <img src="/static/images/banner_01.jpg" alt="1" class="pic"/>
+                        <img src="/static/images/banner_01.jpg" alt="1" class="pic"/>
+                        <img src="/static/images/banner_02.jpg" alt="2" class="pic"/>
+                        <img src="/static/images/banner_03.jpg" alt="3" class="pic"/>
+                        <img src="/static/images/banner_04.jpg" alt="4" class="pic"/>
+                        <img src="/static/images/banner_05.jpg" alt="5" class="pic"/>
                     </div>
                     <div id="buttons">
                         <span index="1" class="on"></span>
@@ -99,7 +108,7 @@
     </div>
     <div class="container-right">
         <div class="container1">
-            <div class="pic-sale1"><img src="images/sale (2).jpg" title="粉色衬衣"/></div>
+            <div class="pic-sale1"><img src="/static/images/sale (2).jpg" title="粉色衬衣"/></div>
             <h4><a href="${pageContext.request.contextPath}/dim?category=衬衫">纯棉商务休闲衬衣</a></h4>
             <br>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;精致与休闲造型兼备的牛津纺衬衫。简约素雅的风格，新潮百搭
@@ -108,7 +117,7 @@
         </div>
         <br/>
         <div class="container2">
-            <div class="pic-sale2"><img src="images/sale (3).jpg" title="儿童卫衣"/></div>
+            <div class="pic-sale2"><img src="/static/images/sale (3).jpg" title="儿童卫衣"/></div>
             <br/>
             <h4><a href="${pageContext.request.contextPath}/dim?category=儿童卫衣">亲子儿童卫衣</a></h4>
             <br>
@@ -123,7 +132,7 @@
         <br/>
         <br/>
         <div class="container3">
-            <div class="pic-sale3"><img width="110" src="images/14.jpg" title="鞋子"/></div>
+            <div class="pic-sale3"><img width="110" src="/static/images/14.jpg" title="鞋子"/></div>
             <h4><a href="${pageContext.request.contextPath}/dim?category=鞋子">鞋子</a></h4>
             <p>佰缌2014秋冬新款欧美尖头粗跟短靴高跟 防水台真皮铆钉女式靴子
             </p>
@@ -135,25 +144,25 @@
 <!--------start content 2--------->
 
 <div class="popular">
-    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=衣服"><img src="images/pic1.jpg"/>
+    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=衣服"><img src="/static/images/pic1.jpg"/>
         <div class="look">
             <h4>流行风向</h4>
             <p>查看更多</p>
         </div>
     </a></div>
-    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=卫衣"><img src="images/pic2.jpg"/>
+    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=卫衣"><img src="/static/images/pic2.jpg"/>
         <div class="look">
             <h4>时尚前沿</h4>
             <p>查看更多</p>
         </div>
     </a></div>
-    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=鞋子"> <img src="images/pic3.jpg"/>
+    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=鞋子"> <img src="/static/images/pic3.jpg"/>
         <div class="look">
             <h4>踮起脚尖</h4>
             <p>查看更多</p>
         </div>
     </a></div>
-    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=背包"><img src="images/pic4.jpg"/>
+    <div class="popular1"><a href="${pageContext.request.contextPath}/dim?category=背包"><img src="/static/images/pic4.jpg"/>
         <div class="look">
             <h4>独一无二</h4>
             <p>查看更多</p>

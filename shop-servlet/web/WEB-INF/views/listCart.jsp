@@ -7,10 +7,11 @@
 <body>
 <div style="text-align:center;">
     <h1>我的购物车</h1>
-    <table border="1" width="700" align="center">
+    <table border="1" width="700" align="center" cellspacing="0"cellpadding="0" >
         <tr>
             <th>编号</th>
             <th>名称</th>
+            <th>图片</th>
             <th>单价</th>
             <th>数量</th>
             <th>小计</th>
@@ -19,10 +20,16 @@
             <tr>
                 <td>${entry.key.code}</td>
                 <td>${entry.key.name}</td>
+                <td>
+                    <c:if test="${entry.key.images !=null }">
+                        <img width="60" id="images" alt="" src="/shop/${entry.key.images}">
+                    </c:if>
+                </td>
                 <td>${entry.key.price}</td>
                 <td>${entry.value}</td>
                 <td>${ entry.key.price*entry.value }</td>
             </tr>
+
         </c:forEach>
         <tr>
             <td colspan="5">
@@ -35,7 +42,7 @@
                 <a href="#">结算</a>
             </td>
             <td colspan="5">
-                <a href="javascript:history.go(-1)">返回商品信息页面</a>
+                <a href="javascript:history.go(-1)">返回上一级</a>
             </td>
         </tr>
     </table>

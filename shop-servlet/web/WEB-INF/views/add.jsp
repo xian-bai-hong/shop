@@ -3,6 +3,7 @@
 <html>
 <head>
     <link href="/static/css/layui/css/layui.css" type="text/css" rel="stylesheet"/>
+    <link rel="start icon" href="/static/images/resize_png_new.png">
     <script src="/static/js/layui.js"></script>
     <title>添加商品</title>
     <style>

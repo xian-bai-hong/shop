@@ -30,6 +30,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article selectCart(String name) {
+        return dao.selectCart(name);
+    }
+
+    @Override
     public Article getById(Integer code) {
         return dao.getById(code);
     }

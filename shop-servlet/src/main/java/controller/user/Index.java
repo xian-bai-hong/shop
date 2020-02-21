@@ -3,25 +3,22 @@ package controller.user;
 import com.entity.article.Article;
 import com.entity.user.Users;
 import com.github.pagehelper.PageInfo;
-import com.service.user.UsersService;
 import com.service.user.impl.UsersImpl;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-
-//这里用了@SessionAttributes，可以直接把model中的user(也就key)放入其中
-//这样保证了session中存在user这个对象
-@SessionAttributes("user")
 public class Index {
 
     @Autowired
@@ -37,7 +34,9 @@ public class Index {
     public String check(String category, @RequestParam(value = "pageNum",
             required = false, defaultValue = "1") int pageNum,
                         @RequestParam(value = "pageSize",
-                                required = false, defaultValue = "8") int pageSize, Model model, HttpSession session) {
+                                required = false,
+                                defaultValue = "8") int pageSize,
+                        Model model, HttpSession session) {
         session.setAttribute("category", category);
 
         List<Article> search = service.search(pageNum, pageSize, category);
@@ -58,22 +57,59 @@ public class Index {
     public String login() {
         return "login";
     }
-    //表单提交过来的路径
-    @RequestMapping("/checkLogin")
-    public String checkLogin(Users user, Model model){
-        //调用service方法
-        user = service.username(user.getUsername(), user.getPassword());
+
+    @RequestMapping(value = "/checklogin", method = RequestMethod.GET)
+    public ModelAndView login(String username, String password, ModelAndView mv,
+                              HttpSession session) {
+
+        Users user = service.login(username, password);
         System.out.println("user = " + user);
-        //若有user则添加到model里并且跳转到成功页面
-        if(user != null){
-            if (user.getType().equals("管理员")){
-                System.out.println("管理");
-                return "forward:/getAll";
+        if (user != null) {
+            //登录成功，将user对象设置到HttpSession作用范围域中
+            session.setAttribute("user", user);
+            if (user.getType().equals("管理员")) {
+                mv.setViewName("forward:/getAll");
+            } else {
+                //登录成功，跳转页面　
+                mv.setViewName("index");
             }
-            System.out.println("普通");
-            model.addAttribute("user",user);
-            return "forward:/";
+        } else {
+            //登录失败，设置失败信息，并调转到登录页面
+            mv.addObject("message", "登录名和密码错误，请重新输入");
+            // 登录失败，跳转页面
+            mv.setViewName("error");
         }
+        return mv;
+    }
+
+    //注销方法
+    @RequestMapping("/outLogin")
+    public String outLogin(HttpSession session) {
+        //通过session.removeAttribute()方法来注销当前的session
+        session.removeAttribute("user");
         return "login";
     }
+
+    //注册
+    @RequestMapping("register")
+    public String insert1() {
+        return "register";
+    }
+
+    @RequestMapping("/insert")
+    public String insert(Users user) {
+        service.insert(user);
+        System.out.println("user = " + user);
+        return "/login";
+    }
+
+    //商品浏览记录
+    @RequestMapping("/browse")
+    public String browse(){
+
+        return "browse";
+    }
+
+
+
 }

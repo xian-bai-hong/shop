@@ -13,10 +13,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/css/layui/css/layui.css" media="all">
-    <link rel="start icon" href="images/resize_png_new.png">
+    <link rel="start icon" href="/static/images/resize_png_new.png">
 </head>
 <body>
-<form class="layui-form" action="${pageContext.request.contextPath}/checkLogin" style=" text-align: center;margin-top: 200px">
+<form class="layui-form" action="${pageContext.request.contextPath}/checklogin" style=" text-align: center;margin-top: 200px">
 
     <div class="layui-form-item">
         <div class="layui-inline">
@@ -36,10 +36,10 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" style="width: 200px">登录</button>
         </div>
     </div>
+    <a href="${pageContext.request.contextPath}/">直通车</a>
 </form>
 </body>
 </html>

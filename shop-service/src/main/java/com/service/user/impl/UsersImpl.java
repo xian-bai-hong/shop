@@ -15,26 +15,25 @@ public class UsersImpl implements UsersService {
     @Autowired
     private UsersDao dao;
 
-        //校验用户登录
+    //登陆
     @Override
-    public Users username(String username, String password) {
-        Users user = dao.username(username);
-        if(user != null && user.getPassword().equals(password)){
-            return user;
-        }
-        return null;
+    public Users login(String username, String password) {
+        return dao.login(username, password);
     }
 
+    //注册
     @Override
     public void insert(Users users) {
         dao.insert(users);
     }
 
+    //模糊查询并分页
     @Override
     public List<Article> search(int pageNum, int pageSize, String category) {
         return dao.search(pageNum, pageSize, category);
     }
 
+    //查询商品详细信息
     @Override
     public List<Article> sole(Integer code) {
         return dao.sole(code);

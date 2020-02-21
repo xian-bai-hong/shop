@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface UsersDao {
 
-    //查找用户名
-    Users username(String username);
+    //登陆
+    Users login(@Param("username") String username,@Param("password") String password);
 
     void insert(Users users);
 

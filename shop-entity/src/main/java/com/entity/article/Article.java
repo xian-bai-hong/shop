@@ -9,7 +9,7 @@ public class Article {
     private Integer code;
     private String name;
     private String notice;
-    private BigDecimal price;
+    private Double price;
     private String images;
     private String category;
     private String mezz;
